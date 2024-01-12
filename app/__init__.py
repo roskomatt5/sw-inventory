@@ -2,7 +2,7 @@ from flask import Flask, render_template
 from config import Config
 from .site.routes import site
 from .authentication.routes import auth
-# from .api.routes import api
+from .api.routes import api
 
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -15,7 +15,7 @@ CORS(app)
 
 app.register_blueprint(site)
 app.register_blueprint(auth)
-# app.register_blueprint(api)
+app.register_blueprint(api)
 
 
 app.json_encoder = JSONEncoder

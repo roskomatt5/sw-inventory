@@ -49,33 +49,33 @@ class User(db.Model, UserMixin):
     def __repr__(self):
         return f'User {self.email} has been added to the database'
 
-# class Contact(db.Model):
-#     id = db.Column(db.String, primary_key = True)
-#     name = db.Column(db.String(150), nullable = False)
-#     email = db.Column(db.String(200))
-#     phone_number = db.Column(db.String(20))
-#     address = db.Column(db.String(200))
-#     user_token = db.Column(db.String, db.ForeignKey('user.token'), nullable = False)
+class Car(db.Model):
+    id = db.Column(db.String, primary_key = True)
+    make = db.Column(db.String(150), nullable = False)
+    model = db.Column(db.String(150), nullable = False)
+    year = db.Column(db.String(20), nullable = False)
+    color = db.Column(db.String(200), nullable = False)
+    user_token = db.Column(db.String, db.ForeignKey('user.token'), nullable = False)
 
-#     def __init__(self,name,email,phone_number,address,user_token, id = ''):
-#         self.id = self.set_id()
-#         self.name = name
-#         self.email = email
-#         self.phone_number = phone_number
-#         self.address = address
-#         self.user_token = user_token
+    def __init__(self,make,model,year,color,user_token, id = ''):
+        self.id = self.set_id()
+        self.make = make
+        self.model = model
+        self.year = year
+        self.color = color
+        self.user_token = user_token
 
 
-#     def __repr__(self):
-#         return f'The following contact has been added to the phonebook: {self.name}'
+    def __repr__(self):
+        return f'The following car has been added to the inventory: {self.color}, {self.year} {self.make} {self.model}'
 
-#     def set_id(self):
-#         return (secrets.token_urlsafe())
+    def set_id(self):
+        return (secrets.token_urlsafe())
 
-# class ContactSchema(ma.Schema):
-#     class Meta:
-#         fields = ['id', 'name','email','phone_number', 'address']
+class ContactSchema(ma.Schema):
+    class Meta:
+        fields = ['id', 'make','model','year', 'color']
 
-# contact_schema = ContactSchema()
-# contacts_schema = ContactSchema(many=True)
+car_schema = ContactSchema()
+cars_schema = ContactSchema(many=True)
 
