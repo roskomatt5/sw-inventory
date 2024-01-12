@@ -4,9 +4,6 @@ from models import db, User, Car, car_schema, cars_schema
 
 api = Blueprint('api',__name__, url_prefix='/api')
 
-@api.route('/getdata')
-def getdata():
-    return {'hello':'world'}
 
 @api.route('/car', methods = ['POST'])
 @token_required
