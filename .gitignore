@@ -2,3 +2,4 @@ app.db
 __pychache__
 migrations
 .env
+venv

@@ -25,10 +25,10 @@
                     <li class="nav-item">
                         <a href="{{ url_for('site.home') }}" class="nav-link">Home</a>
                     </li>
+                    {% if current_user.is_authenticated %}
                     <li class="nav-item">
                         <a href="{{ url_for('site.profile') }}" class="nav-link">Profile</a>
                     </li>
-                    {% if current_user.is_authenticated %}
                     <li class="nav-item">
                         <a href="{{ url_for('auth.logout') }}" class="nav-link">Logout</a>
                     </li>
