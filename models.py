@@ -49,33 +49,29 @@ class User(db.Model, UserMixin):
     def __repr__(self):
         return f'User {self.email} has been added to the database'
 
-class Car(db.Model):
+class Drink(db.Model):
     id = db.Column(db.String, primary_key = True)
-    make = db.Column(db.String(150), nullable = False)
-    model = db.Column(db.String(150), nullable = False)
-    year = db.Column(db.String(20), nullable = False)
-    color = db.Column(db.String(200), nullable = False)
+    brand = db.Column(db.String(150), nullable = False)
+    flavor = db.Column(db.String(150), nullable = False)
     user_token = db.Column(db.String, db.ForeignKey('user.token'), nullable = False)
 
-    def __init__(self,make,model,year,color,user_token, id = ''):
+    def __init__(self,brand,flavor,user_token, id = ''):
         self.id = self.set_id()
-        self.make = make
-        self.model = model
-        self.year = year
-        self.color = color
+        self.brand = brand
+        self.flavor = flavor
         self.user_token = user_token
 
 
     def __repr__(self):
-        return f'The following car has been added to the inventory: {self.color}, {self.year} {self.make} {self.model}'
+        return f'The following flavor has been added to the inventory: {self.flavor}, {self.brand}'
 
     def set_id(self):
         return (secrets.token_urlsafe())
 
 class ContactSchema(ma.Schema):
     class Meta:
-        fields = ['id', 'make','model','year', 'color']
+        fields = ['brand','flavor','user_token', 'id']
 
-car_schema = ContactSchema()
-cars_schema = ContactSchema(many=True)
+drink_schema = ContactSchema()
+drinks_schema = ContactSchema(many=True)
 
