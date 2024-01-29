@@ -7,7 +7,7 @@ api = Blueprint('api',__name__, url_prefix='/api')
 
 @api.route('/drinks', methods = ['POST'])
 @token_required
-def create_car(current_user_token):
+def create_drink(current_user_token):
     brand = request.json['brand']
     flavor = request.json['flavor']
     user_token = current_user_token.token
